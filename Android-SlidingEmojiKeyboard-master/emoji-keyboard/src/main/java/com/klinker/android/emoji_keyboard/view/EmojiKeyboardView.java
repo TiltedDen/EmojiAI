@@ -15,7 +15,12 @@ import android.widget.LinearLayout;
 import com.astuetz.PagerSlidingTabStrip;
 import com.klinker.android.emoji_keyboard.EmojiKeyboardService;
 import com.klinker.android.emoji_keyboard.adapter.EmojiPagerAdapter;
+import com.klinker.android.emoji_keyboard.adapter.StaticEmojiAdapter;
+import com.klinker.android.emoji_keyboard.constants.EmojiTexts;
 import com.klinker.android.emoji_keyboard_trial.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmojiKeyboardView extends View implements SharedPreferences.OnSharedPreferenceChangeListener{
 
@@ -70,6 +75,10 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
 
     public View getView() {
         return layout;
+    }
+
+    public void addPageEmojiPagerAdapter(List<String> emojis, ArrayList<Integer> icons){
+        emojiPagerAdapter.addPage(new KeyboardSinglePageView(emojiKeyboardService, new StaticEmojiAdapter(emojiKeyboardService, emojis.toArray(new String[0]), icons)).getView());
     }
 
     public void notifyDataSetChanged() {

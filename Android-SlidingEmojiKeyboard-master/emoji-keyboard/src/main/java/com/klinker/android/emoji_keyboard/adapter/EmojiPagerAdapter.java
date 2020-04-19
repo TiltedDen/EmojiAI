@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class EmojiPagerAdapter extends PagerAdapter {
 
     private final String[] TITLES = { "recent",
+                                    "suggested",
                                     "people",
                                     "things",
                                     "nature",
@@ -58,6 +59,10 @@ public class EmojiPagerAdapter extends PagerAdapter {
         pager.removeView(pages.get(position));
     }
 
+    public void addPage(View view){
+        pages.add(view);
+    }
+
     @Override
     public CharSequence getPageTitle(int position) {
         return TITLES[position];
@@ -73,7 +78,7 @@ public class EmojiPagerAdapter extends PagerAdapter {
         return view == object;
     }
 
-    private EmojiIcons getPreferedIconSet() {
+    public EmojiIcons getPreferedIconSet() {
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(pager.getContext());
 
